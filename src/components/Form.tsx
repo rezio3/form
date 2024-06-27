@@ -1,46 +1,66 @@
 import "../style/form.scss";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { OptionType } from "../types";
+import { useEffect, useState } from "react";
+import { defaultUsers } from "../data/users";
+import { countryOptions } from "../data/countryOptions";
+import CardInputs from "./CardInputs";
 
 const Form = () => {
-  type OptionType = {
-    label: string;
-  };
-  const autocompleteHandler = (
+  const [selectedContry, setSelectedCountry] = useState("");
+  const [defaultUser, setDefaultUser] = useState({
+    name: "",
+    surname: "",
+  });
+  const [cardDetails, setCardDetails] = useState({
+    cardNumber: "",
+    cardDate: "",
+    cvv: "",
+  });
+
+  const countryInputHandler = (
     event: React.ChangeEvent<{}>,
     value: OptionType | null
   ) => {
-    console.log(event.target);
-    if (value) {
-      console.log(value.label);
-    }
+    value ? setSelectedCountry(value.label) : setSelectedCountry("");
   };
-  const options: OptionType[] = [{ label: "Poland" }, { label: "USA" }];
+
+  useEffect(() => {
+    const pickDefaultUser = defaultUsers.find(
+      (e) => e.country === selectedContry
+    );
+    setDefaultUser({
+      name: pickDefaultUser?.name || "",
+      surname: pickDefaultUser?.surname || "",
+    });
+  }, [selectedContry]);
 
   return (
-    <div className="w-50 h-50 p-5 d-flex flex-column form-container gap-3">
+    <div className="w-50 h-50 p-5 d-flex flex-column align-items-start form-container gap-3 overflow-auto">
       <div className="d-flex gap-3">
         <TextField
           disabled
           id="outlined-disabled"
           label="Name"
-          defaultValue="Jan"
+          value={defaultUser.name}
         />
         <TextField
           disabled
           id="outlined-disabled"
           label="Surname"
-          defaultValue="Kowalski"
+          value={defaultUser.surname}
         />
       </div>
       <Autocomplete
         disablePortal
         id="combo-box-demo"
-        options={options}
+        options={countryOptions}
         sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label="Country" />}
-        onChange={autocompleteHandler}
+        onChange={countryInputHandler}
       />
+      <CardInputs cardDetails={cardDetails} setCardDetails={setCardDetails} />
     </div>
   );
 };
