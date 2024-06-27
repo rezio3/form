@@ -2,7 +2,7 @@ import "../style/form.scss";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { OptionType } from "../types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { defaultUsers } from "../data/users";
 import { countryOptions } from "../data/countryOptions";
 import CardInputs from "./CardInputs";
@@ -37,6 +37,13 @@ const Form = () => {
     });
   }, [selectedContry]);
 
+  const clearBtnHandler = () => {
+    setCardDetails({
+      cardNumber: "",
+      cardDate: "",
+      cvv: "",
+    });
+  };
   return (
     <div className="w-50 p-5 d-flex flex-column align-items-start form-container gap-3 overflow-auto">
       <div className="d-flex gap-3">
@@ -64,7 +71,9 @@ const Form = () => {
       <CardInputs cardDetails={cardDetails} setCardDetails={setCardDetails} />
       <div className="d-flex gap-3">
         <Button variant="contained">Submit</Button>
-        <Button variant="outlined">Clear</Button>
+        <Button variant="outlined" onClick={clearBtnHandler}>
+          Clear
+        </Button>
       </div>
     </div>
   );
