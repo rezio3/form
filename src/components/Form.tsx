@@ -10,15 +10,19 @@ import Button from "@mui/material/Button";
 
 const Form = () => {
   const [selectedContry, setSelectedCountry] = useState("");
-  const [defaultUser, setDefaultUser] = useState({
-    name: "",
-    surname: "",
-  });
+  const [defaultUser, setDefaultUser] = useState("");
   const [cardDetails, setCardDetails] = useState({
     cardNumber: "",
     cardDate: "",
     cvv: "",
   });
+
+  useEffect(() => {
+    const pickDefaultUser = defaultUsers.find(
+      (e) => e.country === selectedContry
+    );
+    setDefaultUser(pickDefaultUser?.name || "");
+  }, [selectedContry]);
 
   const countryInputHandler = (
     event: React.ChangeEvent<{}>,
@@ -26,16 +30,6 @@ const Form = () => {
   ) => {
     value ? setSelectedCountry(value.label) : setSelectedCountry("");
   };
-
-  useEffect(() => {
-    const pickDefaultUser = defaultUsers.find(
-      (e) => e.country === selectedContry
-    );
-    setDefaultUser({
-      name: pickDefaultUser?.name || "",
-      surname: pickDefaultUser?.surname || "",
-    });
-  }, [selectedContry]);
 
   const clearBtnHandler = () => {
     setCardDetails({
@@ -52,18 +46,13 @@ const Form = () => {
       onSubmit={submitHandler}
       className="w-50 p-5 d-flex flex-column align-items-start form-container gap-3 overflow-auto"
     >
+      <CardInputs cardDetails={cardDetails} setCardDetails={setCardDetails} />
       <div className="d-flex gap-3">
         <TextField
           disabled
           id="outlined-disabled"
-          label="Name"
-          value={defaultUser.name}
-        />
-        <TextField
-          disabled
-          id="outlined-disabled"
-          label="Surname"
-          value={defaultUser.surname}
+          label="Name on card"
+          value={defaultUser}
         />
       </div>
       <Autocomplete
@@ -74,7 +63,6 @@ const Form = () => {
         renderInput={(params) => <TextField {...params} label="Country" />}
         onChange={countryInputHandler}
       />
-      <CardInputs cardDetails={cardDetails} setCardDetails={setCardDetails} />
       <div className="d-flex gap-3">
         <Button variant="contained" type="submit">
           Submit

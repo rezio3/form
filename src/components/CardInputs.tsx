@@ -14,7 +14,7 @@ const CardInputs = (props: CardInputsProps) => {
     <div className="d-flex flex-column gap-3">
       <TextField
         id="cardNumber"
-        label="Credit card"
+        label="Card number"
         variant="outlined"
         onChange={cardInputHandler}
         value={props.cardDetails.cardNumber}
@@ -22,7 +22,7 @@ const CardInputs = (props: CardInputsProps) => {
       <div className="d-flex gap-3">
         <TextField
           id="cardDate"
-          label="Valid date"
+          label="Expiration"
           variant="outlined"
           onChange={cardInputHandler}
           value={props.cardDetails.cardDate}

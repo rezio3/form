@@ -1,4 +1,4 @@
 export const defaultUsers = [
-  { name: "Jan", surname: "Kowalski", country: "Poland" },
-  { name: "John", surname: "Doe", country: "USA" },
+  { name: "Jan Kowalski", country: "Poland" },
+  { name: "John Doe", country: "USA" },
 ];
