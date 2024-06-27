@@ -44,8 +44,14 @@ const Form = () => {
       cvv: "",
     });
   };
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
   return (
-    <div className="w-50 p-5 d-flex flex-column align-items-start form-container gap-3 overflow-auto">
+    <form
+      onSubmit={submitHandler}
+      className="w-50 p-5 d-flex flex-column align-items-start form-container gap-3 overflow-auto"
+    >
       <div className="d-flex gap-3">
         <TextField
           disabled
@@ -70,12 +76,14 @@ const Form = () => {
       />
       <CardInputs cardDetails={cardDetails} setCardDetails={setCardDetails} />
       <div className="d-flex gap-3">
-        <Button variant="contained">Submit</Button>
+        <Button variant="contained" type="submit">
+          Submit
+        </Button>
         <Button variant="outlined" onClick={clearBtnHandler}>
           Clear
         </Button>
       </div>
-    </div>
+    </form>
   );
 };
 
