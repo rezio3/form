@@ -1,6 +1,6 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
-import Form from "./components/Form.tsx";
+import Form from "./components/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
