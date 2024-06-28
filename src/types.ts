@@ -8,13 +8,12 @@ export type CardDetails = {
   cvv: string;
 };
 
-export type CardInputsProps = {
-  cardDetails: CardDetails;
-  setCardDetails: (value: CardDetails) => void;
-};
-
 export type CardData = {
-  // id: string;
+  billing_details: {
+    address: {
+      country: string;
+    };
+  };
   card: {
     last4: string;
     exp_month: string;
@@ -22,6 +21,12 @@ export type CardData = {
     brand: string;
     id: string;
   };
+};
+
+export type CardInputsProps = {
+  cardDetails: CardDetails;
+  setCardDetails: (value: CardDetails) => void;
+  selectedCard: CardData | null;
 };
 
 export type CardSelectProps = {
