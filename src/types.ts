@@ -14,10 +14,17 @@ export type CardInputsProps = {
 };
 
 export type CardData = {
+  // id: string;
   card: {
     last4: string;
     exp_month: string;
     exp_year: string;
     brand: string;
+    id: string;
   };
+};
+
+export type CardSelectProps = {
+  selectedCard: CardData | null;
+  setSelectedCard: (value: CardData | null) => void;
 };
