@@ -17,7 +17,12 @@ const CardInputs = (props: CardInputsProps) => {
         label="Card number"
         variant="outlined"
         onChange={cardInputHandler}
-        value={props.cardDetails.cardNumber}
+        value={
+          props.selectedCard === null
+            ? props.cardDetails.cardNumber
+            : `**** **** **** ${props.selectedCard?.card.last4}`
+        }
+        disabled={props.selectedCard === null ? false : true}
       />
       <div className="d-flex gap-3">
         <TextField
@@ -25,14 +30,20 @@ const CardInputs = (props: CardInputsProps) => {
           label="Expiration"
           variant="outlined"
           onChange={cardInputHandler}
-          value={props.cardDetails.cardDate}
+          value={
+            props.selectedCard === null
+              ? props.cardDetails.cardDate
+              : `${props.selectedCard?.card.exp_month} / ${props.selectedCard?.card.exp_year}`
+          }
+          disabled={props.selectedCard === null ? false : true}
         />
         <TextField
           id="cvv"
           label="CVC/CVV"
           variant="outlined"
           onChange={cardInputHandler}
-          value={props.cardDetails.cvv}
+          value={props.selectedCard === null ? props.cardDetails.cvv : `***`}
+          disabled={props.selectedCard === null ? false : true}
         />
       </div>
     </div>

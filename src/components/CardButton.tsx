@@ -1,25 +1,25 @@
 import Button from "@mui/material/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
-import { useEffect, useState } from "react";
 import { CardData } from "../types";
 
 const CardButton = (props: {
-  card: CardData["card"];
+  singleFetchedCard: CardData;
   setSelectedCard: (value: CardData | null) => void;
 }) => {
-  const [isSelected, setIsSelected] = useState(false);
-  useEffect(() => {
-    setIsSelected(false);
-  }, []);
-  const { card } = props;
+  //   const [isSelected, setIsSelected] = useState(false);
+
+  const { setSelectedCard } = props;
+
   const cardButtonHandler = () => {
-    setIsSelected(true);
+    // setIsSelected(true);
+    setSelectedCard(props.singleFetchedCard);
   };
+  const { card } = props.singleFetchedCard;
 
   return (
     <Button
-      variant={isSelected ? "contained" : "outlined"}
+      variant="outlined"
       className="w-100 d-flex flex-column align-items-start gap-5"
       onClick={cardButtonHandler}
     >

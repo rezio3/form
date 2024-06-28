@@ -11,7 +11,7 @@ import "../style/spinner.scss";
 import CardsSelection from "./CardsSelection";
 
 const Form = () => {
-  const [selectedContry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [defaultUser, setDefaultUser] = useState("");
   const [cardDetails, setCardDetails] = useState({
     cardNumber: "",
@@ -22,10 +22,23 @@ const Form = () => {
 
   useEffect(() => {
     const pickDefaultUser = defaultUsers.find(
-      (e) => e.country === selectedContry
+      (e) => e.country === selectedCountry
     );
     setDefaultUser(pickDefaultUser?.name || "");
-  }, [selectedContry]);
+  }, [selectedCountry]);
+
+  useEffect(() => {
+    if (selectedCard !== null) {
+      switch (selectedCard.billing_details.address.country) {
+        case "PL":
+          setSelectedCountry(countryOptions[0].label);
+          break;
+        case "US":
+          setSelectedCountry(countryOptions[1].label);
+          break;
+      }
+    }
+  }, [selectedCard]);
 
   const countryInputHandler = (
     event: React.ChangeEvent<{}>,
@@ -41,6 +54,7 @@ const Form = () => {
       cvv: "",
     });
     setSelectedCountry("");
+    setSelectedCard(null);
   };
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,7 +63,11 @@ const Form = () => {
   return (
     <div className="p-5 d-flex form-container gap-3 overflow-auto">
       <form onSubmit={submitHandler} className="d-flex flex-column gap-3">
-        <CardInputs cardDetails={cardDetails} setCardDetails={setCardDetails} />
+        <CardInputs
+          cardDetails={cardDetails}
+          setCardDetails={setCardDetails}
+          selectedCard={selectedCard}
+        />
         <div className="d-flex gap-3">
           <TextField
             disabled
@@ -60,13 +78,13 @@ const Form = () => {
         </div>
         <Autocomplete
           disablePortal
-          disabled={false}
+          disabled={selectedCard !== null}
           id="combo-box-demo"
           options={countryOptions}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Country" />}
           onChange={countryInputHandler}
-          value={selectedContry as any}
+          value={selectedCountry as any}
         />
         <div className="d-flex gap-3">
           <Button variant="contained" type="submit">

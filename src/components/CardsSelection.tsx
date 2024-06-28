@@ -39,7 +39,7 @@ const CardsSelection = (props: CardSelectProps) => {
         const { card } = singleFetchedCard;
         return (
           <CardButton
-            card={card}
+            singleFetchedCard={singleFetchedCard}
             key={card.id}
             setSelectedCard={props.setSelectedCard}
           />
