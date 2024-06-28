@@ -84,7 +84,7 @@ const Form = () => {
           value={selectedCountry as any}
         />
         <div className="d-flex gap-3">
-          <Button variant="outlined" onClick={clearBtnHandler}>
+          <Button variant="contained" onClick={clearBtnHandler}>
             Clear
           </Button>
         </div>
