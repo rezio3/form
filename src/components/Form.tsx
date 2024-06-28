@@ -56,13 +56,10 @@ const Form = () => {
     setSelectedCountry("");
     setSelectedCard(null);
   };
-  const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
 
   return (
     <div className="p-5 d-flex form-container gap-3 overflow-auto">
-      <form onSubmit={submitHandler} className="d-flex flex-column gap-3">
+      <form className="d-flex flex-column gap-3">
         <CardInputs
           cardDetails={cardDetails}
           setCardDetails={setCardDetails}
@@ -87,9 +84,6 @@ const Form = () => {
           value={selectedCountry as any}
         />
         <div className="d-flex gap-3">
-          <Button variant="contained" type="submit">
-            Submit
-          </Button>
           <Button variant="outlined" onClick={clearBtnHandler}>
             Clear
           </Button>
