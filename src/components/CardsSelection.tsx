@@ -28,7 +28,7 @@ const CardsSelection = (props: CardSelectProps) => {
 
   return (
     <div className="d-flex flex-column ms-auto gap-1 select-card-container">
-      <h4 className="text-secondary">Pick card</h4>
+      <h4 className="text-secondary">Choose a card</h4>
 
       {loading ? (
         <div className="loader-container">
