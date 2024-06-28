@@ -31,7 +31,7 @@ const CardsSelection = (props: CardSelectProps) => {
       <h4 className="text-secondary">Choose a card</h4>
 
       {loading ? (
-        <div className="loader-container">
+        <div className="loader-container mt-4">
           <div className="spinner" />
         </div>
       ) : null}

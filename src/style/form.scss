@@ -1,6 +1,7 @@
 .form-container {
   border-radius: 20px;
   box-shadow: 0 0 25px -15px black;
+  max-height: 420px;
 }
 
 .divider {
@@ -10,4 +11,5 @@
 
 .select-card-container {
   width: 240px;
+  overflow-y: auto;
 }
