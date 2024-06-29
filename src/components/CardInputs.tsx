@@ -4,10 +4,14 @@ import { CardInputsProps } from "../types";
 
 const CardInputs = (props: CardInputsProps) => {
   const cardInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = onlyDigits(event.target.value);
+    const { value, id } = event.target;
+    const inputValue = onlyDigits(value);
+    if (id === "cardNumber" && value.length > 19) return;
+    if (id === "cardDate" && value.length > 7) return;
+    if (id === "cvv" && value.length > 3) return;
     props.setCardDetails({
       ...props.cardDetails,
-      [event.target.id]: inputValue,
+      [id]: inputValue,
     });
   };
   return (
@@ -23,6 +27,7 @@ const CardInputs = (props: CardInputsProps) => {
             : `**** **** **** ${props.selectedCard?.card.last4}`
         }
         disabled={props.selectedCard === null ? false : true}
+        placeholder="1111 1111 1111 1111"
       />
       <div className="d-flex gap-3">
         <TextField
@@ -36,6 +41,7 @@ const CardInputs = (props: CardInputsProps) => {
               : `${props.selectedCard?.card.exp_month} / ${props.selectedCard?.card.exp_year}`
           }
           disabled={props.selectedCard === null ? false : true}
+          placeholder="11/11"
         />
         <TextField
           id="cvv"
@@ -44,6 +50,7 @@ const CardInputs = (props: CardInputsProps) => {
           onChange={cardInputHandler}
           value={props.selectedCard === null ? props.cardDetails.cvv : `***`}
           disabled={props.selectedCard === null ? false : true}
+          placeholder="111"
         />
       </div>
     </div>
