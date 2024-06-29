@@ -9,6 +9,7 @@ export type CardDetails = {
 };
 
 export type CardData = {
+  id: string;
   billing_details: {
     address: {
       country: string;
@@ -32,4 +33,11 @@ export type CardInputsProps = {
 export type CardSelectProps = {
   selectedCard: CardData | null;
   setSelectedCard: (value: CardData | null) => void;
+};
+
+export type CardButtonProps = {
+  singleFetchedCard: CardData;
+  setSelectedCard: (value: CardData | null) => void;
+  setHighlightedCardId: (value: string | null) => void;
+  buttonVariant: "outlined" | "contained";
 };

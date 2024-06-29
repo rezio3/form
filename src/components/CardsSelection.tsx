@@ -7,6 +7,9 @@ const CardsSelection = (props: CardSelectProps) => {
   const [fetchedCards, setFetchedCards] = useState<CardData[]>([]);
   const [loading, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [highlightedCardId, setHighlightedCardId] = useState<string | null>(
+    null
+  );
 
   const fetchCards = async () => {
     try {
@@ -52,12 +55,19 @@ const CardsSelection = (props: CardSelectProps) => {
       ) : (
         <>
           {fetchedCards.map((singleFetchedCard) => {
-            const { card } = singleFetchedCard;
+            let buttonVariantIfSelected: "outlined" | "contained";
+
+            singleFetchedCard.id === highlightedCardId
+              ? (buttonVariantIfSelected = "contained")
+              : (buttonVariantIfSelected = "outlined");
+
             return (
               <CardButton
                 singleFetchedCard={singleFetchedCard}
                 key={uuidv4()}
                 setSelectedCard={props.setSelectedCard}
+                setHighlightedCardId={setHighlightedCardId}
+                buttonVariant={buttonVariantIfSelected}
               />
             );
           })}
