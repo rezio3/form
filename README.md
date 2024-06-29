@@ -1,4 +1,18 @@
-# Getting Started with Create React App
+# About the project
+
+A simple form for loading credit cards using Stripe. Country selection automatically sets the cardholder (John Doe for the USA, Jan Kowalski for Poland).
+
+Tech stack:
+
+- React.js
+- TypeScript
+- Material UI
+- Bootstrap
+- SCSS, dart-sass
+- UUID
+- FontAwesome
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
