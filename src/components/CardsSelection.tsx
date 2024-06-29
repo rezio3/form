@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CardData, CardSelectProps } from "../types";
 import CardButton from "./CardButton";
+import { v4 as uuidv4 } from "uuid";
 
 const CardsSelection = (props: CardSelectProps) => {
   const [fetchedCards, setFetchedCards] = useState<CardData[]>([]);
@@ -46,7 +47,9 @@ const CardsSelection = (props: CardSelectProps) => {
         </div>
       ) : null}
       {isError ? (
-        <span>Error</span>
+        <span className="text-secondary h5 mt-4">
+          Something went wrong :{"("}
+        </span>
       ) : (
         <>
           {fetchedCards.map((singleFetchedCard) => {
@@ -54,7 +57,7 @@ const CardsSelection = (props: CardSelectProps) => {
             return (
               <CardButton
                 singleFetchedCard={singleFetchedCard}
-                key={card.id}
+                key={uuidv4()}
                 setSelectedCard={props.setSelectedCard}
               />
             );
