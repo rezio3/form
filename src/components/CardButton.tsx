@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import { CardButtonProps } from "../types";
-import "../style/selectCard.scss";
+import "../style/cardSelection.scss";
 
 const CardButton = (props: CardButtonProps) => {
   const {
