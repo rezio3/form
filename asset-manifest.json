@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/stripe-card-form/static/css/main.5afa4347.css",
-    "main.js": "/stripe-card-form/static/js/main.3d5fd2a0.js",
+    "main.css": "/stripe-card-form/static/css/main.db242127.css",
+    "main.js": "/stripe-card-form/static/js/main.f47ba371.js",
     "index.html": "/stripe-card-form/index.html",
-    "main.5afa4347.css.map": "/stripe-card-form/static/css/main.5afa4347.css.map",
-    "main.3d5fd2a0.js.map": "/stripe-card-form/static/js/main.3d5fd2a0.js.map"
+    "main.db242127.css.map": "/stripe-card-form/static/css/main.db242127.css.map",
+    "main.f47ba371.js.map": "/stripe-card-form/static/js/main.f47ba371.js.map"
   },
   "entrypoints": [
-    "static/css/main.5afa4347.css",
-    "static/js/main.3d5fd2a0.js"
+    "static/css/main.db242127.css",
+    "static/js/main.f47ba371.js"
   ]
 }
