@@ -5,21 +5,31 @@ import CardButton from "./CardButton";
 const CardsSelection = (props: CardSelectProps) => {
   const [fetchedCards, setFetchedCards] = useState<CardData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const fetchCards = async () => {
-    const response = await fetch(
-      "https://api.stripe.com/v1/payment_methods?type=card&customer=cus_QN0gD8DN4RxDwi",
-      {
-        headers: {
-          Authorization:
-            "Bearer sk_test_51PWEL9Foou8wOMVk7aqtqoEJBC4wtADFhUYcUabd497Q0MUYJ16qcNGZsl20ejWB23Lrs7PKkxpK5zTXjVyHjnM300JIwTemCC",
-        },
+    try {
+      const response = await fetch(
+        "https://api.stripe.com/v1/payment_methods?type=card&customer=cus_QN0gD8DN4RxDwi",
+        {
+          headers: {
+            Authorization:
+              "Bearer sk_test_51PWEL9Foou8wOMVk7aqtqoEJBC4wtADFhUYcUabd497Q0MUYJ16qcNGZsl20ejWB23Lrs7PKkxpK5zTXjVyHjnM300JIwTemCC",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error");
       }
-    );
-    const data = await response.json();
-    setLoading(false);
-    data.data.selected = false;
-    setFetchedCards(data.data);
+      const data = await response.json();
+      setLoading(false);
+      setFetchedCards(data.data);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      setIsError(true);
+      return;
+    }
   };
 
   useEffect(() => {
@@ -35,16 +45,22 @@ const CardsSelection = (props: CardSelectProps) => {
           <div className="spinner" />
         </div>
       ) : null}
-      {fetchedCards.map((singleFetchedCard) => {
-        const { card } = singleFetchedCard;
-        return (
-          <CardButton
-            singleFetchedCard={singleFetchedCard}
-            key={card.id}
-            setSelectedCard={props.setSelectedCard}
-          />
-        );
-      })}
+      {isError ? (
+        <span>Error</span>
+      ) : (
+        <>
+          {fetchedCards.map((singleFetchedCard) => {
+            const { card } = singleFetchedCard;
+            return (
+              <CardButton
+                singleFetchedCard={singleFetchedCard}
+                key={card.id}
+                setSelectedCard={props.setSelectedCard}
+              />
+            );
+          })}
+        </>
+      )}
     </div>
   );
 };
