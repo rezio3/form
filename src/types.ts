@@ -38,6 +38,5 @@ export type CardSelectProps = {
 export type CardButtonProps = {
   singleFetchedCard: CardData;
   setSelectedCard: (value: CardData | null) => void;
-  setHighlightedCardId: (value: string | null) => void;
   buttonVariant: "outlined" | "contained";
 };

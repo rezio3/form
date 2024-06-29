@@ -5,15 +5,9 @@ import { CardButtonProps } from "../types";
 import "../style/cardSelection.scss";
 
 const CardButton = (props: CardButtonProps) => {
-  const {
-    setSelectedCard,
-    singleFetchedCard,
-    setHighlightedCardId,
-    buttonVariant,
-  } = props;
+  const { setSelectedCard, singleFetchedCard, buttonVariant } = props;
 
   const cardButtonHandler = () => {
-    setHighlightedCardId(singleFetchedCard.id);
     setSelectedCard(singleFetchedCard);
   };
   const { card } = singleFetchedCard;
