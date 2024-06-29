@@ -29,7 +29,6 @@ const CardsSelection = (props: CardSelectProps) => {
       console.log(err);
       setLoading(false);
       setIsError(true);
-      return;
     }
   };
 
