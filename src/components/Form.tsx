@@ -81,7 +81,7 @@ const Form = () => {
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Country" />}
           onChange={countryInputHandler}
-          value={selectedCountry as any}
+          inputValue={selectedCountry as any}
         />
         <div className="d-flex gap-3">
           <Button variant="contained" onClick={clearBtnHandler}>
